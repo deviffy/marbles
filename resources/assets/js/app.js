@@ -15,7 +15,7 @@ require('./bootstrap');
 
 Vue.component('colorsetup', require('./components/ColorSetup.vue'));
 Vue.component('marblesetup', require('./components/MarbleSetup.vue'));
-Vue.component('buckets', require('./components/Buckets.vue'));
+Vue.component('results', require('./components/Results.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -32,7 +32,7 @@ const app = new Vue({
         },
         showBuckets: function (buckets) {
             this.buckets = buckets;
-            this.step = 'buckets';
+            this.step = 'results';
         }
     }
 });

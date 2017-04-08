@@ -6,6 +6,9 @@
                     <div class="panel-heading">Buckets</div>
 
                     <div class="panel-body">
+                        <ul>
+                            <li v-for="bucket in buckets">{{ bucket }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>

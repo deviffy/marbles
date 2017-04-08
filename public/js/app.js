@@ -1029,7 +1029,7 @@ __webpack_require__(33);
 
 Vue.component('colorsetup', __webpack_require__(38));
 Vue.component('marblesetup', __webpack_require__(39));
-Vue.component('buckets', __webpack_require__(37));
+Vue.component('results', __webpack_require__(55));
 
 var app = new Vue({
     el: '#app',
@@ -1045,7 +1045,7 @@ var app = new Vue({
         },
         showBuckets: function showBuckets(buckets) {
             this.buckets = buckets;
-            this.step = 'buckets';
+            this.step = 'results';
         }
     }
 });
@@ -1898,37 +1898,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = {
-    data: function data() {
-        return {
-            buckets: []
-        };
-    },
-    mounted: function mounted() {
-        this.buckets = this.$parent.buckets;
-    }
-};
-
-/***/ }),
+/* 30 */,
 /* 31 */
 /***/ (function(module, exports) {
 
@@ -2060,8 +2030,7 @@ module.exports = {
         setMarbles: function setMarbles(event) {
             var _this = this;
 
-            axios.post('/api/pickMarbles', { colors: this.colorSet, marbles: this.marbleSet }).then(function (response) {
-                console.log(response.data);
+            axios.post('/api/pickMarbles', { marbles: this.marbleSet }).then(function (response) {
                 _this.buckets = response.data;
                 _this.$parent.showBuckets(_this.buckets);
             }).catch(function (response) {
@@ -31860,40 +31829,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(44)(module)))
 
 /***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(3)(
-  /* script */
-  __webpack_require__(30),
-  /* template */
-  __webpack_require__(41),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/catalindumitrescu/Code/algo.dev/resources/assets/js/components/Buckets.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Buckets.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7399e32a", Component.options)
-  } else {
-    hotAPI.reload("data-v-7399e32a", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 37 */,
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31907,7 +31843,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/catalindumitrescu/Code/algo.dev/resources/assets/js/components/ColorSetup.vue"
+Component.options.__file = "C:\\Users\\catal\\Code\\marbles.dev\\resources\\assets\\js\\components\\ColorSetup.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ColorSetup.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -31918,9 +31854,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b6dc84b0", Component.options)
+    hotAPI.createRecord("data-v-5754f282", Component.options)
   } else {
-    hotAPI.reload("data-v-b6dc84b0", Component.options)
+    hotAPI.reload("data-v-5754f282", Component.options)
   }
 })()}
 
@@ -31941,7 +31877,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/catalindumitrescu/Code/algo.dev/resources/assets/js/components/MarbleSetup.vue"
+Component.options.__file = "C:\\Users\\catal\\Code\\marbles.dev\\resources\\assets\\js\\components\\MarbleSetup.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] MarbleSetup.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -31952,9 +31888,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4d138762", Component.options)
+    hotAPI.createRecord("data-v-15c8e12b", Component.options)
   } else {
-    hotAPI.reload("data-v-4d138762", Component.options)
+    hotAPI.reload("data-v-15c8e12b", Component.options)
   }
 })()}
 
@@ -32045,40 +31981,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4d138762", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-15c8e12b", module.exports)
   }
 }
 
 /***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2 mt-30"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Buckets")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  })])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7399e32a", module.exports)
-  }
-}
-
-/***/ }),
+/* 41 */,
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32152,7 +32060,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b6dc84b0", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5754f282", module.exports)
   }
 }
 
@@ -41519,6 +41427,111 @@ module.exports = function(module) {
 __webpack_require__(10);
 module.exports = __webpack_require__(11);
 
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = {
+    data: function data() {
+        return {
+            buckets: []
+        };
+    },
+    mounted: function mounted() {
+        this.buckets = this.$parent.buckets;
+    }
+};
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(54),
+  /* template */
+  __webpack_require__(56),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\catal\\Code\\marbles.dev\\resources\\assets\\js\\components\\Results.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Results.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2f8dc33e", Component.options)
+  } else {
+    hotAPI.reload("data-v-2f8dc33e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2 mt-30"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Buckets")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('ul', _vm._l((_vm.buckets), function(bucket) {
+    return _c('li', [_vm._v(_vm._s(bucket))])
+  }))])])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2f8dc33e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

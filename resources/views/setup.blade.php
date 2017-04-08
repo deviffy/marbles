@@ -18,7 +18,7 @@
         <div id="app">
             <colorsetup v-if="step === 'colorsetup'"></colorsetup>
             <marblesetup v-if="step === 'marblesetup'"></marblesetup>
-            <buckets v-if="step === 'buckets'"></buckets>
+            <results v-if="step === 'results'"></results>
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Color;
+use App\Models\Result;
 
 class MarblesController extends Controller
 {
@@ -14,66 +16,40 @@ class MarblesController extends Controller
 
     public function pickColors(Request $request)
     {
+        // Return an array of random color names
         $count = $request->input('count');
         return Color::inRandomOrder()->get()->take($count)->pluck('name')->toJson();
     }
 
     public function pickMarbles(Request $request)
     {
-        $colorSet = $request->input('colors');
+        // Retrieve input data
         $bag = $request->input('marbles');
 
-        // Init the buckets
-        $buckets = [];
+        // Sort the marbles in the bag :)
+        array_multisort($bag);
 
-        // Set the number of available colors and calculate the number of marbles
-        $colors = count($colorSet);
-        $marbles = $colors * $colors;
+        // Run the algorithm
+        $buckets = \App\Library\Algorithm::run($bag);
 
-        // Sort the marbles in the bag? :)
-        array_multisort($this->bag, SORT_DESC);
+        // Save results to the database (Eloquent)
+        Result::create([
+            'marbles' => json_encode($bag),
+            'buckets' => json_encode($buckets)
+        ]);
 
-        // Walk through the array and pick optimal number of marbles and put them in buckets
-        while ($marbles > 0)
-        {
-            for ($i = 0; $i < $colors; $i++) {
-                for ($j = 0; $j < 2; $j++) {
-                    $marblesInBucket = isset($buckets[$i]) ? array_sum($buckets[$i]) : 0;
-                    $neededInBucket = $colors - $marblesInBucket;
+        // Prepare the results
+        $results = json_encode($buckets);
 
-                    if ($marblesInBucket < $colors) {
-                        $index = ($i + $j < $colors) ? $i + $j : 0;
-                        $marble = array_keys($bag)[$index];
+        // Replace color names with hexcodes
+        $colors = [];
 
-                        $optimalPick = floor($colors / 2) + (1 - $j);
+        // foreach ($bag as $color => $value) {
+        //     //$colors[$color] = Color::where('name', $color)->pluck('code');
+        //     str_replace($color, Color::where('name', $color)->first()->pluck('code'), $results);
+        // }
 
-                        if ($optimalPick > $neededInBucket) {
-                            $optimalPick = $neededInBucket;
-                        }
-
-                        if ($bag[$marble] >= $optimalPick) {
-                            $pick = $optimalPick;
-                        } elseif ($bag[$marble] > 0) {
-                            $pick = $bag[$marble];
-                        } else {
-                            $pick = 0;
-                        }
-
-                        if ($pick != 0) {
-                            if (!isset($buckets[$i][$marble]))
-                                $buckets[$i][$marble] = $pick;
-                            else
-                                $buckets[$i][$marble] += $pick;
-                        }
-
-                        $bag[$marble] -= $pick;
-                        $marbles -= $pick;
-                    }
-                }
-            }
-        }
-
-        // Return the filled buckets
-        return $buckets;
+        // Return the results
+        return $results;
     }
 }

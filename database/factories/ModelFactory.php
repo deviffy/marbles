@@ -25,6 +25,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Color::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->colorName
+        'name' => $faker->unique()->colorName,
+        'code' => $faker->hexcolor
     ];
 });
