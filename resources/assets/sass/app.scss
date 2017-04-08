@@ -1,0 +1,23 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.mt-05 { margin-top: 0.5em; }
+.mt-10 { margin-top: 1.0em; }
+.mt-15 { margin-top: 1.5em; }
+.mt-20 { margin-top: 2.0em; }
+.mt-25 { margin-top: 2.5em; }
+.mt-30 { margin-top: 3.0em; }
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0
+}
