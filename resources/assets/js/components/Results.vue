@@ -6,8 +6,15 @@
                     <div class="panel-heading">Buckets</div>
 
                     <div class="panel-body">
-                        <ul>
-                            <li v-for="bucket in buckets">{{ bucket }}</li>
+                        <ul class="list-unstyled">
+                            <li v-for="(bucket, index) in buckets" class="mt-10">
+                                <div class="d-inline-block">Bucket {{ index + 1 }}:</div>
+                                <div v-for="marble in bucket" class="d-inline-block">
+                                    <div>
+                                        <div v-for="n in marble.value" class="marble" v-bind:style="{ 'background-color': marble.code }"><div class="glass"></div><span class="caption">{{ marble.name }}</span></div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -20,7 +27,8 @@
     module.exports = {
         data: function () {
             return {
-                buckets: []
+                buckets: [],
+                test: '#000'
             }
         },
         mounted: function () {

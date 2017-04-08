@@ -18,7 +18,6 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command('marbles', function () {
-
     // Human friendly color names
     $availableColors = [
         'red', 'green', 'blue', 'yellow', 'orange', 'purple',

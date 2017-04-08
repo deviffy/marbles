@@ -38,16 +38,19 @@ class MarblesController extends Controller
             'buckets' => json_encode($buckets)
         ]);
 
-        // Prepare the results
-        $results = json_encode($buckets);
+        // Add color values and remap the array for prettier output
+        $results = [];
+        foreach ($buckets as $bucket) {
+            $b = array_map(function($key, $value) {
+                return [
+                    'name' => $key,
+                    'code' => \App\Models\Color::where('name', $key)->get()->pluck('code')[0],
+                    'value' => $value
+                ];
+            }, array_keys($bucket), $bucket);
 
-        // Replace color names with hexcodes
-        $colors = [];
-
-        // foreach ($bag as $color => $value) {
-        //     //$colors[$color] = Color::where('name', $color)->pluck('code');
-        //     str_replace($color, Color::where('name', $color)->first()->pluck('code'), $results);
-        // }
+            $results[] = $b;
+        }
 
         // Return the results
         return $results;

@@ -71,6 +71,7 @@
             setMarbles: function (event) {
                 axios.post('/api/pickMarbles', { marbles: this.marbleSet })
                     .then((response) => {
+                        console.log(response.data);
                         this.buckets = response.data;
                         this.$parent.showBuckets(this.buckets);
                     })
