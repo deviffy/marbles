@@ -1,18 +1,17 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 mt-30">
+            <div class="col-md-12 mt-30">
                 <div class="panel panel-default">
                     <div class="panel-heading">Buckets</div>
 
                     <div class="panel-body">
                         <ul class="list-unstyled">
-                            <li v-for="(bucket, index) in buckets" class="mt-10">
-                                <div class="d-inline-block">Bucket {{ index + 1 }}:</div>
-                                <div v-for="marble in bucket" class="d-inline-block">
-                                    <div>
+                            <li v-for="(bucket, index) in buckets" class="bucket row mt-10">
+                                <div class="col-xs-12">
+                                    <span v-for="marble in bucket" class="d-inline-block">
                                         <div v-for="n in marble.value" class="marble" v-bind:style="{ 'background-color': marble.code }"><div class="glass"></div><span class="caption">{{ marble.name }}</span></div>
-                                    </div>
+                                    </span>
                                 </div>
                             </li>
                         </ul>

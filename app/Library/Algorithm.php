@@ -27,8 +27,10 @@ class Algorithm
                 foreach ($bag as $k => $v) {
                     // Choose the optimal number of marbles from the bag
                     if ($v < $optimalPick || $bucketCapacity - $marblesInBucket < $v) {
-                        $pick = $v;
-                    } else {
+                        $pick = (int)$v;
+                    } elseif ($marblesInBucket + $v == $bucketCapacity) {
+                        $pick = (int)$v;
+                    }else {
                         $pick = $optimalPick;
                     }
 
